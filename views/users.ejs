@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Users</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <ul id="users-list"></ul>
+    <ul> <% 
+        users.forEach(user => 
+        { %> <li><%= user.name %> (<%= user.username %>) - <%= user.email %></li> <% }) %> </ul> 
+    <script>
+        fetch('/api/users?api-key=hJAsknw-L198sAJD-l3kasx')
+            .then(response => { if (!response.ok) { throw new Error('Network response was not ok'); } return response.json(); })
+            .then(data => {
+               
+                const usersList = document.getElementById('users-list');
+                data.users.forEach(user => {
+                    console.log(data.user.username)
+                    <!-- const listItem = document.createElement('li');
+                    listItem.textContent = `${user.name} (${user.username}) - ${user.email}`;
+                    usersList.appendChild(listItem); -->
+                });
+            });
+    </script>
+</body>
+</html>
